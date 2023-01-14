@@ -13,6 +13,11 @@ private:
 public:
   BlockList();
   void insertBlock(MetaData *block);
+
+  size_t getNumberOfFreeBlocks() const;
+  size_t getNumberOfFreeBytes() const;
+  size_t getNumberOfBlocks() const;
+  size_t getNumberOfBytes() const;
 };
 
 void *smalloc(size_t size);
@@ -24,4 +29,4 @@ size_t _num_free_bytes();
 size_t _num_allocated_blocks();
 size_t _num_allocated_bytes();
 size_t _num_meta_data_bytes();
-size_t _size_meta_data();
+size_t _size_meta_data() { return sizeof(MetaData); }
