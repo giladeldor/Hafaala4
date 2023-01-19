@@ -1,5 +1,5 @@
 #include <unistd.h>
-void *smalloc(size_t size);
+void *smalloc(size_t size) { return nullptr; }
 void *scalloc(size_t num, size_t size);
 void sfree(void *p);
 void *srealloc(void *oldp, size_t size);
