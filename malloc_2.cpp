@@ -1,4 +1,3 @@
-#include "dbg.h"
 #include <string.h>
 #include <unistd.h>
 
@@ -58,7 +57,6 @@ void *BlockList::allocateBlock(size_t size) {
   MetaData *meta_data = block_list;
   size_t alloc_size = size + sizeof(MetaData);
   while (meta_data != nullptr) {
-    dbg(meta_data->is_free, meta_data->size, alloc_size);
     if (meta_data->is_free && alloc_size <= meta_data->size) {
       meta_data->is_free = false;
       return (char *)meta_data + sizeof(MetaData);
