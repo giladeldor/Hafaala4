@@ -63,13 +63,13 @@ void *BlockList::allocateBlock(size_t size) {
     }
     meta_data = meta_data->next;
   }
-  void *allocate_block = sbrk(size);
+  void *allocate_block = sbrk(alloc_size);
   if (allocate_block == (void *)-1) {
     return nullptr;
   }
 
   MetaData *new_block = (MetaData *)allocate_block;
-  new_block->size = size;
+  new_block->size = alloc_size;
   new_block->is_free = false;
   new_block->next = nullptr;
   new_block->prev = nullptr;
@@ -130,9 +130,8 @@ void *smalloc(size_t size) {
   if (allocated_block == nullptr) {
     return nullptr;
   }
-  return allocated_block + sizeof(MetaData);
-  // return (char *)allocated_block + sizeof(MetaData); Perhaps this is the
-  // answer
+  // return allocated_block + sizeof(MetaData);
+  return (char *)allocated_block + sizeof(MetaData);
 }
 
 void *scalloc(size_t num, size_t size) {
