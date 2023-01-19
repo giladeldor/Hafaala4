@@ -1,12 +1,12 @@
 #include <unistd.h>
-const int max_size = 100000000;
+const int max_size = 1e8;
 void *smalloc(size_t size) {
   if (size == 0 || size > max_size) {
     return NULL;
   }
-  void *mem_alloced = sbrk(size);
-  if (!mem_alloced) {
+  void *p_break = sbrk(size);
+  if ((size_t)p_break == (size_t)-1) {
     return NULL;
   }
-  return mem_alloced;
+  return p_break;
 }

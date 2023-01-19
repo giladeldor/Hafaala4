@@ -1,7 +1,8 @@
+#include "dbg.h"
 #include <string.h>
 #include <unistd.h>
 
-const int max_size = 100000000;
+const int max_size = 1e8;
 
 typedef struct MallocMetadata {
   size_t size;
@@ -30,8 +31,8 @@ public:
 };
 
 MetaData *BlockList::getMetaData(void *p) const {
-  // return (MetaData *)(block_list->next - p);
-  return block_list;
+  MetaData *meta = (MetaData *)((char *)p - sizeof(MetaData));
+  return meta;
 }
 
 void BlockList::freeBlock(void *ptr) {
@@ -39,42 +40,44 @@ void BlockList::freeBlock(void *ptr) {
   to_free->is_free = true;
 }
 void BlockList::insertBlock(MetaData *to_insert) {
+  if (block_list == nullptr) {
+    block_list = to_insert;
+    return;
+  }
+
   MetaData *tail = block_list;
-  MetaData *prev = NULL;
-  while (tail != nullptr) {
-    prev = tail;
+  while (tail->next != nullptr) {
     tail = tail->next;
   }
-  if (prev == nullptr) {
-    block_list = to_insert;
-  } else {
-    prev->next = to_insert;
-    to_insert->prev = prev;
-  }
+
+  tail->next = to_insert;
+  to_insert->prev = tail;
 }
 
 void *BlockList::allocateBlock(size_t size) {
   MetaData *meta_data = block_list;
   size_t alloc_size = size + sizeof(MetaData);
   while (meta_data != nullptr) {
-    if (meta_data->is_free && size <= meta_data->size) {
+    dbg(meta_data->is_free, meta_data->size, alloc_size);
+    if (meta_data->is_free && alloc_size <= meta_data->size) {
       meta_data->is_free = false;
-      return meta_data;
+      return (char *)meta_data + sizeof(MetaData);
     }
     meta_data = meta_data->next;
   }
-  void *allocate_block = sbrk(alloc_size);
-  if (allocate_block == (void *)-1) {
+
+  void *p_break = sbrk(alloc_size);
+  if ((size_t)p_break == (size_t)-1) {
     return nullptr;
   }
 
-  MetaData *new_block = (MetaData *)allocate_block;
+  MetaData *new_block = (MetaData *)p_break;
   new_block->size = alloc_size;
   new_block->is_free = false;
   new_block->next = nullptr;
   new_block->prev = nullptr;
   insertBlock(new_block);
-  return allocate_block;
+  return (char *)p_break + sizeof(MetaData);
 }
 
 size_t BlockList::getNumberOfBlocks() const {
@@ -91,7 +94,7 @@ size_t BlockList::getNumberOfBytes() const {
   MetaData *temp = block_list;
   size_t count = 0;
   while (temp != nullptr) {
-    count += temp->size;
+    count += temp->size - sizeof(MetaData);
     temp = temp->next;
   }
   return count;
@@ -114,7 +117,7 @@ size_t BlockList::getNumberOfFreeBytes() const {
   size_t count = 0;
   while (temp != nullptr) {
     if (temp->is_free) {
-      count += temp->size;
+      count += temp->size - sizeof(MetaData);
     }
     temp = temp->next;
   }
@@ -122,16 +125,13 @@ size_t BlockList::getNumberOfFreeBytes() const {
 }
 
 BlockList bl = BlockList();
+
 void *smalloc(size_t size) {
   if (size == 0 || size > max_size) {
     return nullptr;
   }
-  void *allocated_block = bl.allocateBlock(size);
-  if (allocated_block == nullptr) {
-    return nullptr;
-  }
-  // return allocated_block + sizeof(MetaData);
-  return (char *)allocated_block + sizeof(MetaData);
+
+  return bl.allocateBlock(size);
 }
 
 void *scalloc(size_t num, size_t size) {
@@ -139,6 +139,7 @@ void *scalloc(size_t num, size_t size) {
   if (ptr == NULL) {
     return NULL;
   }
+
   memset(ptr, 0, num * size);
   return ptr;
 }
@@ -149,26 +150,30 @@ void sfree(void *ptr) {
   }
   bl.freeBlock(ptr);
 }
+
 void *srealloc(void *oldp, size_t size) {
   if (size == 0 || size > max_size) {
     return nullptr;
   }
+
   if (oldp == nullptr) {
     return smalloc(size);
   }
+
   MetaData *old_block = bl.getMetaData(oldp);
   size_t old_size = old_block->size;
   if (size <= old_size) {
     return oldp;
   }
 
-  void *new_block = smalloc(size);
-  if (new_block == NULL) {
+  void *new_p = smalloc(size);
+  if (new_p == NULL) {
     return NULL;
   }
-  memcpy(new_block, oldp, old_size);
+
+  memcpy(new_p, oldp, old_size);
   sfree(oldp);
-  return new_block;
+  return new_p;
 }
 
 size_t _num_free_blocks() { return bl.getNumberOfFreeBlocks(); }
@@ -180,7 +185,7 @@ size_t _num_allocated_blocks() { return bl.getNumberOfBlocks(); }
 size_t _num_allocated_bytes() { return bl.getNumberOfBytes(); }
 
 size_t _num_meta_data_bytes() {
-  return bl.getNumberOfBytes() * sizeof(MetaData);
+  return bl.getNumberOfBlocks() * sizeof(MetaData);
 }
 
 size_t _size_meta_data() { return sizeof(MetaData); }

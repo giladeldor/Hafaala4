@@ -1,3 +1,5 @@
+
+#include "../dbg.h"
 #include "my_stdlib.h"
 #include <catch2/catch_test_macros.hpp>
 
@@ -100,7 +102,7 @@ TEST_CASE("Max size", "[malloc2]")
     verify_size(base);
 }
 
-TEST_CASE("free", "[malloc2]")
+TEST_CASE("free 1", "[malloc2]")
 {
     verify_blocks(0, 0, 0, 0);
 
@@ -126,6 +128,7 @@ TEST_CASE("free", "[malloc2]")
     verify_size(base);
 
     char *new_a = (char *)smalloc(10);
+    dbg((size_t)a, (size_t)b, (size_t)c,(size_t) new_a);
     REQUIRE(a == new_a);
     char *new_b = (char *)smalloc(10);
     REQUIRE(b == new_b);
