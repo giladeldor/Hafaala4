@@ -73,99 +73,99 @@ tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_basic.cpp.o: tests/CMakeFiles/m
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_basic.cpp.o: /home/giladeldor/Hafaala4/tests/malloc_3_test_basic.cpp
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_basic.cpp.o: tests/CMakeFiles/malloc_3_test.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/giladeldor/Hafaala4/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_basic.cpp.o"
-	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_basic.cpp.o -MF CMakeFiles/malloc_3_test.dir/malloc_3_test_basic.cpp.o.d -o CMakeFiles/malloc_3_test.dir/malloc_3_test_basic.cpp.o -c /home/giladeldor/Hafaala4/tests/malloc_3_test_basic.cpp
+	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_basic.cpp.o -MF CMakeFiles/malloc_3_test.dir/malloc_3_test_basic.cpp.o.d -o CMakeFiles/malloc_3_test.dir/malloc_3_test_basic.cpp.o -c /home/giladeldor/Hafaala4/tests/malloc_3_test_basic.cpp
 
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_basic.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/malloc_3_test.dir/malloc_3_test_basic.cpp.i"
-	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/giladeldor/Hafaala4/tests/malloc_3_test_basic.cpp > CMakeFiles/malloc_3_test.dir/malloc_3_test_basic.cpp.i
+	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/giladeldor/Hafaala4/tests/malloc_3_test_basic.cpp > CMakeFiles/malloc_3_test.dir/malloc_3_test_basic.cpp.i
 
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_basic.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/malloc_3_test.dir/malloc_3_test_basic.cpp.s"
-	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/giladeldor/Hafaala4/tests/malloc_3_test_basic.cpp -o CMakeFiles/malloc_3_test.dir/malloc_3_test_basic.cpp.s
+	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/giladeldor/Hafaala4/tests/malloc_3_test_basic.cpp -o CMakeFiles/malloc_3_test.dir/malloc_3_test_basic.cpp.s
 
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_reuse.cpp.o: tests/CMakeFiles/malloc_3_test.dir/flags.make
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_reuse.cpp.o: /home/giladeldor/Hafaala4/tests/malloc_3_test_reuse.cpp
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_reuse.cpp.o: tests/CMakeFiles/malloc_3_test.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/giladeldor/Hafaala4/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_reuse.cpp.o"
-	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_reuse.cpp.o -MF CMakeFiles/malloc_3_test.dir/malloc_3_test_reuse.cpp.o.d -o CMakeFiles/malloc_3_test.dir/malloc_3_test_reuse.cpp.o -c /home/giladeldor/Hafaala4/tests/malloc_3_test_reuse.cpp
+	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_reuse.cpp.o -MF CMakeFiles/malloc_3_test.dir/malloc_3_test_reuse.cpp.o.d -o CMakeFiles/malloc_3_test.dir/malloc_3_test_reuse.cpp.o -c /home/giladeldor/Hafaala4/tests/malloc_3_test_reuse.cpp
 
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_reuse.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/malloc_3_test.dir/malloc_3_test_reuse.cpp.i"
-	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/giladeldor/Hafaala4/tests/malloc_3_test_reuse.cpp > CMakeFiles/malloc_3_test.dir/malloc_3_test_reuse.cpp.i
+	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/giladeldor/Hafaala4/tests/malloc_3_test_reuse.cpp > CMakeFiles/malloc_3_test.dir/malloc_3_test_reuse.cpp.i
 
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_reuse.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/malloc_3_test.dir/malloc_3_test_reuse.cpp.s"
-	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/giladeldor/Hafaala4/tests/malloc_3_test_reuse.cpp -o CMakeFiles/malloc_3_test.dir/malloc_3_test_reuse.cpp.s
+	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/giladeldor/Hafaala4/tests/malloc_3_test_reuse.cpp -o CMakeFiles/malloc_3_test.dir/malloc_3_test_reuse.cpp.s
 
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_scalloc.cpp.o: tests/CMakeFiles/malloc_3_test.dir/flags.make
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_scalloc.cpp.o: /home/giladeldor/Hafaala4/tests/malloc_3_test_scalloc.cpp
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_scalloc.cpp.o: tests/CMakeFiles/malloc_3_test.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/giladeldor/Hafaala4/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_scalloc.cpp.o"
-	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_scalloc.cpp.o -MF CMakeFiles/malloc_3_test.dir/malloc_3_test_scalloc.cpp.o.d -o CMakeFiles/malloc_3_test.dir/malloc_3_test_scalloc.cpp.o -c /home/giladeldor/Hafaala4/tests/malloc_3_test_scalloc.cpp
+	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_scalloc.cpp.o -MF CMakeFiles/malloc_3_test.dir/malloc_3_test_scalloc.cpp.o.d -o CMakeFiles/malloc_3_test.dir/malloc_3_test_scalloc.cpp.o -c /home/giladeldor/Hafaala4/tests/malloc_3_test_scalloc.cpp
 
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_scalloc.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/malloc_3_test.dir/malloc_3_test_scalloc.cpp.i"
-	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/giladeldor/Hafaala4/tests/malloc_3_test_scalloc.cpp > CMakeFiles/malloc_3_test.dir/malloc_3_test_scalloc.cpp.i
+	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/giladeldor/Hafaala4/tests/malloc_3_test_scalloc.cpp > CMakeFiles/malloc_3_test.dir/malloc_3_test_scalloc.cpp.i
 
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_scalloc.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/malloc_3_test.dir/malloc_3_test_scalloc.cpp.s"
-	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/giladeldor/Hafaala4/tests/malloc_3_test_scalloc.cpp -o CMakeFiles/malloc_3_test.dir/malloc_3_test_scalloc.cpp.s
+	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/giladeldor/Hafaala4/tests/malloc_3_test_scalloc.cpp -o CMakeFiles/malloc_3_test.dir/malloc_3_test_scalloc.cpp.s
 
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_split_and_merge.cpp.o: tests/CMakeFiles/malloc_3_test.dir/flags.make
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_split_and_merge.cpp.o: /home/giladeldor/Hafaala4/tests/malloc_3_test_split_and_merge.cpp
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_split_and_merge.cpp.o: tests/CMakeFiles/malloc_3_test.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/giladeldor/Hafaala4/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_split_and_merge.cpp.o"
-	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_split_and_merge.cpp.o -MF CMakeFiles/malloc_3_test.dir/malloc_3_test_split_and_merge.cpp.o.d -o CMakeFiles/malloc_3_test.dir/malloc_3_test_split_and_merge.cpp.o -c /home/giladeldor/Hafaala4/tests/malloc_3_test_split_and_merge.cpp
+	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_split_and_merge.cpp.o -MF CMakeFiles/malloc_3_test.dir/malloc_3_test_split_and_merge.cpp.o.d -o CMakeFiles/malloc_3_test.dir/malloc_3_test_split_and_merge.cpp.o -c /home/giladeldor/Hafaala4/tests/malloc_3_test_split_and_merge.cpp
 
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_split_and_merge.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/malloc_3_test.dir/malloc_3_test_split_and_merge.cpp.i"
-	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/giladeldor/Hafaala4/tests/malloc_3_test_split_and_merge.cpp > CMakeFiles/malloc_3_test.dir/malloc_3_test_split_and_merge.cpp.i
+	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/giladeldor/Hafaala4/tests/malloc_3_test_split_and_merge.cpp > CMakeFiles/malloc_3_test.dir/malloc_3_test_split_and_merge.cpp.i
 
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_split_and_merge.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/malloc_3_test.dir/malloc_3_test_split_and_merge.cpp.s"
-	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/giladeldor/Hafaala4/tests/malloc_3_test_split_and_merge.cpp -o CMakeFiles/malloc_3_test.dir/malloc_3_test_split_and_merge.cpp.s
+	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/giladeldor/Hafaala4/tests/malloc_3_test_split_and_merge.cpp -o CMakeFiles/malloc_3_test.dir/malloc_3_test_split_and_merge.cpp.s
 
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc.cpp.o: tests/CMakeFiles/malloc_3_test.dir/flags.make
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc.cpp.o: /home/giladeldor/Hafaala4/tests/malloc_3_test_srealloc.cpp
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc.cpp.o: tests/CMakeFiles/malloc_3_test.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/giladeldor/Hafaala4/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc.cpp.o"
-	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc.cpp.o -MF CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc.cpp.o.d -o CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc.cpp.o -c /home/giladeldor/Hafaala4/tests/malloc_3_test_srealloc.cpp
+	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc.cpp.o -MF CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc.cpp.o.d -o CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc.cpp.o -c /home/giladeldor/Hafaala4/tests/malloc_3_test_srealloc.cpp
 
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc.cpp.i"
-	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/giladeldor/Hafaala4/tests/malloc_3_test_srealloc.cpp > CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc.cpp.i
+	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/giladeldor/Hafaala4/tests/malloc_3_test_srealloc.cpp > CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc.cpp.i
 
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc.cpp.s"
-	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/giladeldor/Hafaala4/tests/malloc_3_test_srealloc.cpp -o CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc.cpp.s
+	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/giladeldor/Hafaala4/tests/malloc_3_test_srealloc.cpp -o CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc.cpp.s
 
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc_cases.cpp.o: tests/CMakeFiles/malloc_3_test.dir/flags.make
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc_cases.cpp.o: /home/giladeldor/Hafaala4/tests/malloc_3_test_srealloc_cases.cpp
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc_cases.cpp.o: tests/CMakeFiles/malloc_3_test.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/giladeldor/Hafaala4/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc_cases.cpp.o"
-	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc_cases.cpp.o -MF CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc_cases.cpp.o.d -o CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc_cases.cpp.o -c /home/giladeldor/Hafaala4/tests/malloc_3_test_srealloc_cases.cpp
+	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc_cases.cpp.o -MF CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc_cases.cpp.o.d -o CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc_cases.cpp.o -c /home/giladeldor/Hafaala4/tests/malloc_3_test_srealloc_cases.cpp
 
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc_cases.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc_cases.cpp.i"
-	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/giladeldor/Hafaala4/tests/malloc_3_test_srealloc_cases.cpp > CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc_cases.cpp.i
+	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/giladeldor/Hafaala4/tests/malloc_3_test_srealloc_cases.cpp > CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc_cases.cpp.i
 
 tests/CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc_cases.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc_cases.cpp.s"
-	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/giladeldor/Hafaala4/tests/malloc_3_test_srealloc_cases.cpp -o CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc_cases.cpp.s
+	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/giladeldor/Hafaala4/tests/malloc_3_test_srealloc_cases.cpp -o CMakeFiles/malloc_3_test.dir/malloc_3_test_srealloc_cases.cpp.s
 
 tests/CMakeFiles/malloc_3_test.dir/__/malloc_3.cpp.o: tests/CMakeFiles/malloc_3_test.dir/flags.make
 tests/CMakeFiles/malloc_3_test.dir/__/malloc_3.cpp.o: /home/giladeldor/Hafaala4/malloc_3.cpp
 tests/CMakeFiles/malloc_3_test.dir/__/malloc_3.cpp.o: tests/CMakeFiles/malloc_3_test.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/giladeldor/Hafaala4/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object tests/CMakeFiles/malloc_3_test.dir/__/malloc_3.cpp.o"
-	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/malloc_3_test.dir/__/malloc_3.cpp.o -MF CMakeFiles/malloc_3_test.dir/__/malloc_3.cpp.o.d -o CMakeFiles/malloc_3_test.dir/__/malloc_3.cpp.o -c /home/giladeldor/Hafaala4/malloc_3.cpp
+	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/malloc_3_test.dir/__/malloc_3.cpp.o -MF CMakeFiles/malloc_3_test.dir/__/malloc_3.cpp.o.d -o CMakeFiles/malloc_3_test.dir/__/malloc_3.cpp.o -c /home/giladeldor/Hafaala4/malloc_3.cpp
 
 tests/CMakeFiles/malloc_3_test.dir/__/malloc_3.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/malloc_3_test.dir/__/malloc_3.cpp.i"
-	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/giladeldor/Hafaala4/malloc_3.cpp > CMakeFiles/malloc_3_test.dir/__/malloc_3.cpp.i
+	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/giladeldor/Hafaala4/malloc_3.cpp > CMakeFiles/malloc_3_test.dir/__/malloc_3.cpp.i
 
 tests/CMakeFiles/malloc_3_test.dir/__/malloc_3.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/malloc_3_test.dir/__/malloc_3.cpp.s"
-	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/giladeldor/Hafaala4/malloc_3.cpp -o CMakeFiles/malloc_3_test.dir/__/malloc_3.cpp.s
+	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/giladeldor/Hafaala4/malloc_3.cpp -o CMakeFiles/malloc_3_test.dir/__/malloc_3.cpp.s
 
 # Object files for target malloc_3_test
 malloc_3_test_OBJECTS = \

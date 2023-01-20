@@ -14,7 +14,7 @@ CostDataFile:
 Site: LAPTOP-Q899Q48B
 
 # Build name is osname-revision-compiler, i.e. Linux-2.4.2-2smp-c++
-BuildName: Linux-c++
+BuildName: Linux-g++
 
 # Subprojects
 LabelsForSubprojects: 
@@ -63,7 +63,7 @@ UpdateOptions:
 UpdateType: 
 
 # Compiler info
-Compiler: /usr/bin/c++
+Compiler: /usr/bin/g++
 CompilerVersion: 9.4.0
 
 # Dynamic analysis (MemCheck)

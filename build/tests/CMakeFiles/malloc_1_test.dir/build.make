@@ -73,29 +73,29 @@ tests/CMakeFiles/malloc_1_test.dir/malloc_1_test.cpp.o: tests/CMakeFiles/malloc_
 tests/CMakeFiles/malloc_1_test.dir/malloc_1_test.cpp.o: /home/giladeldor/Hafaala4/tests/malloc_1_test.cpp
 tests/CMakeFiles/malloc_1_test.dir/malloc_1_test.cpp.o: tests/CMakeFiles/malloc_1_test.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/giladeldor/Hafaala4/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object tests/CMakeFiles/malloc_1_test.dir/malloc_1_test.cpp.o"
-	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/malloc_1_test.dir/malloc_1_test.cpp.o -MF CMakeFiles/malloc_1_test.dir/malloc_1_test.cpp.o.d -o CMakeFiles/malloc_1_test.dir/malloc_1_test.cpp.o -c /home/giladeldor/Hafaala4/tests/malloc_1_test.cpp
+	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/malloc_1_test.dir/malloc_1_test.cpp.o -MF CMakeFiles/malloc_1_test.dir/malloc_1_test.cpp.o.d -o CMakeFiles/malloc_1_test.dir/malloc_1_test.cpp.o -c /home/giladeldor/Hafaala4/tests/malloc_1_test.cpp
 
 tests/CMakeFiles/malloc_1_test.dir/malloc_1_test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/malloc_1_test.dir/malloc_1_test.cpp.i"
-	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/giladeldor/Hafaala4/tests/malloc_1_test.cpp > CMakeFiles/malloc_1_test.dir/malloc_1_test.cpp.i
+	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/giladeldor/Hafaala4/tests/malloc_1_test.cpp > CMakeFiles/malloc_1_test.dir/malloc_1_test.cpp.i
 
 tests/CMakeFiles/malloc_1_test.dir/malloc_1_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/malloc_1_test.dir/malloc_1_test.cpp.s"
-	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/giladeldor/Hafaala4/tests/malloc_1_test.cpp -o CMakeFiles/malloc_1_test.dir/malloc_1_test.cpp.s
+	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/giladeldor/Hafaala4/tests/malloc_1_test.cpp -o CMakeFiles/malloc_1_test.dir/malloc_1_test.cpp.s
 
 tests/CMakeFiles/malloc_1_test.dir/__/malloc_1.cpp.o: tests/CMakeFiles/malloc_1_test.dir/flags.make
 tests/CMakeFiles/malloc_1_test.dir/__/malloc_1.cpp.o: /home/giladeldor/Hafaala4/malloc_1.cpp
 tests/CMakeFiles/malloc_1_test.dir/__/malloc_1.cpp.o: tests/CMakeFiles/malloc_1_test.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/giladeldor/Hafaala4/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object tests/CMakeFiles/malloc_1_test.dir/__/malloc_1.cpp.o"
-	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/malloc_1_test.dir/__/malloc_1.cpp.o -MF CMakeFiles/malloc_1_test.dir/__/malloc_1.cpp.o.d -o CMakeFiles/malloc_1_test.dir/__/malloc_1.cpp.o -c /home/giladeldor/Hafaala4/malloc_1.cpp
+	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/malloc_1_test.dir/__/malloc_1.cpp.o -MF CMakeFiles/malloc_1_test.dir/__/malloc_1.cpp.o.d -o CMakeFiles/malloc_1_test.dir/__/malloc_1.cpp.o -c /home/giladeldor/Hafaala4/malloc_1.cpp
 
 tests/CMakeFiles/malloc_1_test.dir/__/malloc_1.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/malloc_1_test.dir/__/malloc_1.cpp.i"
-	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/giladeldor/Hafaala4/malloc_1.cpp > CMakeFiles/malloc_1_test.dir/__/malloc_1.cpp.i
+	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/giladeldor/Hafaala4/malloc_1.cpp > CMakeFiles/malloc_1_test.dir/__/malloc_1.cpp.i
 
 tests/CMakeFiles/malloc_1_test.dir/__/malloc_1.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/malloc_1_test.dir/__/malloc_1.cpp.s"
-	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/giladeldor/Hafaala4/malloc_1.cpp -o CMakeFiles/malloc_1_test.dir/__/malloc_1.cpp.s
+	cd /home/giladeldor/Hafaala4/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/giladeldor/Hafaala4/malloc_1.cpp -o CMakeFiles/malloc_1_test.dir/__/malloc_1.cpp.s
 
 # Object files for target malloc_1_test
 malloc_1_test_OBJECTS = \
