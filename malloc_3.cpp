@@ -1,17 +1,51 @@
 #include <assert.h>
+#include <stdlib.h>
 #include <string.h>
 #include <sys/mman.h>
 #include <unistd.h>
 
-const int max_size = 1e8;
-const int mmap_size = 128 * 1024 - sizeof(MetaData);
+typedef __int32_t int32_t;
 
-typedef struct MallocMetadata {
+static int32_t getCookie() {
+  static int32_t cookie = rand();
+  return cookie;
+}
+
+#define PROP(type, name)                                                       \
+  type get_##name() const {                                                    \
+    checkCookie();                                                             \
+    return name;                                                               \
+  }                                                                            \
+  void set_##name(type val) {                                                  \
+    checkCookie();                                                             \
+    name = val;                                                                \
+  }
+
+struct MetaData {
+  PROP(size_t, size);
+  PROP(bool, is_free);
+  PROP(MetaData *, next);
+  PROP(MetaData *, prev);
+
+  void initCookie() { cookie = getCookie(); }
+
+private:
+  void checkCookie() const {
+    if (cookie != getCookie()) {
+      exit(0xDEADBEEF);
+    }
+  }
+
+private:
+  int32_t cookie;
   size_t size;
   bool is_free;
-  MallocMetadata *next;
-  MallocMetadata *prev;
-} MetaData;
+  MetaData *next;
+  MetaData *prev;
+};
+
+const int max_size = 1e8;
+const int mmap_size = 128 * 1024 - sizeof(MetaData);
 
 class BlockList {
 private:
@@ -19,7 +53,7 @@ private:
   const bool use_mmap;
 
 public:
-  BlockList(bool use_mmap) : use_mmap(use_mmap), block_list(nullptr) {}
+  BlockList(bool use_mmap) : block_list(nullptr), use_mmap(use_mmap) {}
 
   static MetaData *getMetaData(void *p);
 
@@ -49,25 +83,26 @@ MetaData *BlockList::getMetaData(void *p) {
 void BlockList::freeBlock(void *ptr) {
   MetaData *to_free = getMetaData(ptr);
 
-  size_t size = to_free->size - sizeof(MetaData);
+  size_t size = to_free->get_size() - sizeof(MetaData);
   assert((use_mmap && size >= mmap_size) || (!use_mmap && size < mmap_size));
 
   if (use_mmap) {
     removeBlock(to_free);
-    munmap(to_free, to_free->size);
+    munmap(to_free, to_free->get_size());
   } else {
-    to_free->is_free = true;
+    to_free->set_is_free(true);
   }
 }
 
 void BlockList::mergeBlocks(MetaData *left, MetaData *right) {
-  assert(left < right && (MetaData *)((char *)left + left->size) == right);
+  assert(left < right &&
+         (MetaData *)((char *)left + left->get_size()) == right);
 
   removeBlock(left);
   removeBlock(right);
-  left->size += right->size;
-  left->next = nullptr;
-  left->prev = nullptr;
+  left->set_size(left->get_size() + right->get_size());
+  left->set_next(nullptr);
+  left->set_prev(nullptr);
   insertBlock(left);
 }
 
@@ -79,7 +114,7 @@ MetaData *BlockList::getWildernessBlock() const {
     if (itr > wilderness_block) {
       wilderness_block = itr;
     }
-    itr = itr->next;
+    itr = itr->get_next();
   }
 
   return wilderness_block;
@@ -88,11 +123,11 @@ MetaData *BlockList::getWildernessBlock() const {
 MetaData *BlockList::findLeftBlock(MetaData *block) const {
   MetaData *itr = block_list;
   while (itr) {
-    if ((char *)itr + itr->size == (char *)block) {
+    if ((char *)itr + itr->get_size() == (char *)block) {
       return itr;
     }
 
-    itr = itr->next;
+    itr = itr->get_next();
   }
 
   return nullptr;
@@ -101,10 +136,10 @@ MetaData *BlockList::findLeftBlock(MetaData *block) const {
 MetaData *BlockList::findRightBlock(MetaData *block) const {
   MetaData *itr = block_list;
   while (itr) {
-    if ((char *)block + block->size == (char *)itr) {
+    if ((char *)block + block->get_size() == (char *)itr) {
       return itr;
     }
-    itr = itr->next;
+    itr = itr->get_next();
   }
 
   return nullptr;
@@ -112,18 +147,19 @@ MetaData *BlockList::findRightBlock(MetaData *block) const {
 
 void BlockList::trySeperate(void *ptr, size_t size) {
   MetaData *to_seperate = getMetaData(ptr);
-  if (to_seperate->size < size + 128 + 2 * sizeof(MetaData)) {
+  if (to_seperate->get_size() < size + 128 + 2 * sizeof(MetaData)) {
     return;
   }
   removeBlock(to_seperate);
 
   MetaData *new_block = (MetaData *)((char *)ptr + size);
-  new_block->size = to_seperate->size - size - sizeof(MetaData);
-  new_block->is_free = true;
-  new_block->next = nullptr;
-  new_block->prev = nullptr;
+  new_block->initCookie();
+  new_block->set_size(to_seperate->get_size() - size - sizeof(MetaData));
+  new_block->set_is_free(true);
+  new_block->set_next(nullptr);
+  new_block->set_prev(nullptr);
 
-  to_seperate->size = size + sizeof(MetaData);
+  to_seperate->set_size(size + sizeof(MetaData));
 
   insertBlock(new_block);
   insertBlock(to_seperate);
@@ -131,33 +167,33 @@ void BlockList::trySeperate(void *ptr, size_t size) {
 
 void BlockList::mergeFreeBlocks(void *ptr) {
   MetaData *block = getMetaData(ptr);
-  if (!block->is_free) {
+  if (!block->get_is_free()) {
     return;
   }
 
   MetaData *left = findLeftBlock(block);
-  if (left && left->is_free) {
+  if (left && left->get_is_free()) {
     mergeBlocks(left, block);
     block = left;
   }
 
   MetaData *right = findRightBlock(block);
-  if (right && right->is_free) {
+  if (right && right->get_is_free()) {
     mergeBlocks(block, right);
   }
 }
 
 void BlockList::removeBlock(MetaData *to_remove) {
   if (block_list == to_remove) {
-    block_list = to_remove->next;
+    block_list = to_remove->get_next();
   }
 
-  if (to_remove->prev != nullptr) {
-    to_remove->prev->next = to_remove->next;
+  if (to_remove->get_prev() != nullptr) {
+    to_remove->get_prev()->set_next(to_remove->get_next());
   }
 
-  if (to_remove->next != nullptr) {
-    to_remove->next->prev = to_remove->prev;
+  if (to_remove->get_next() != nullptr) {
+    to_remove->get_next()->set_prev(to_remove->get_prev());
   }
 }
 
@@ -170,39 +206,40 @@ void BlockList::insertBlock(MetaData *to_insert) {
   MetaData *tail = block_list;
   MetaData *prev = nullptr;
 
-  while ((tail != nullptr) && (to_insert->size > tail->size)) {
+  while ((tail != nullptr) && (to_insert->get_size() > tail->get_size())) {
     prev = tail;
-    tail = tail->next;
+    tail = tail->get_next();
   }
 
   if (tail == nullptr) {
-    prev->next = to_insert;
-    to_insert->prev = prev;
+    prev->set_next(to_insert);
+    to_insert->set_prev(prev);
     return;
   }
 
-  while (tail != nullptr && tail->size == to_insert->size && tail < to_insert) {
+  while (tail != nullptr && tail->get_size() == to_insert->get_size() &&
+         tail < to_insert) {
     prev = tail;
-    tail = tail->next;
+    tail = tail->get_next();
   }
 
   if (prev == nullptr) {
-    to_insert->next = tail;
-    tail->next = to_insert;
+    to_insert->set_next(tail);
+    tail->set_next(to_insert);
     block_list = to_insert;
     return;
   }
 
   if (tail == nullptr) {
-    prev->next = to_insert;
-    to_insert->prev = prev;
+    prev->set_next(to_insert);
+    to_insert->set_prev(prev);
     return;
   }
 
-  prev->next = to_insert;
-  to_insert->prev = prev;
-  to_insert->next = tail;
-  tail->prev = to_insert;
+  prev->set_next(to_insert);
+  to_insert->set_prev(prev);
+  to_insert->set_next(tail);
+  tail->set_prev(to_insert);
 }
 
 void *BlockList::allocateBlock(size_t size) {
@@ -223,15 +260,15 @@ void *BlockList::allocateBlock(size_t size) {
   } else {
     MetaData *meta_data = block_list;
     while (meta_data != nullptr) {
-      if (meta_data->is_free && alloc_size <= meta_data->size) {
-        meta_data->is_free = false;
+      if (meta_data->get_is_free() && alloc_size <= meta_data->get_size()) {
+        meta_data->set_is_free(false);
         return (char *)meta_data + sizeof(MetaData);
       }
-      meta_data = meta_data->next;
+      meta_data = meta_data->get_next();
     }
 
     MetaData *wilderness_block = getWildernessBlock();
-    if (wilderness_block->is_free) {
+    if (wilderness_block->get_is_free()) {
       expandWilderness(alloc_size);
       new_block = wilderness_block;
       removeBlock(wilderness_block);
@@ -244,10 +281,11 @@ void *BlockList::allocateBlock(size_t size) {
     }
   }
 
-  new_block->size = alloc_size;
-  new_block->is_free = false;
-  new_block->next = nullptr;
-  new_block->prev = nullptr;
+  new_block->initCookie();
+  new_block->set_size(alloc_size);
+  new_block->set_is_free(false);
+  new_block->set_next(nullptr);
+  new_block->set_prev(nullptr);
   insertBlock(new_block);
   return (char *)new_block + sizeof(MetaData);
 }
@@ -259,9 +297,9 @@ void BlockList::expandWilderness(size_t wanted_size) {
   }
 
   removeBlock(block);
-  size_t offset = wanted_size - block->size;
+  size_t offset = wanted_size - block->get_size();
   sbrk(offset);
-  block->size = wanted_size;
+  block->set_size(wanted_size);
   insertBlock(block);
 }
 
@@ -270,7 +308,7 @@ size_t BlockList::getNumberOfBlocks() const {
   size_t count = 0;
   while (temp != nullptr) {
     count++;
-    temp = temp->next;
+    temp = temp->get_next();
   }
   return count;
 }
@@ -279,8 +317,8 @@ size_t BlockList::getNumberOfBytes() const {
   MetaData *temp = block_list;
   size_t count = 0;
   while (temp != nullptr) {
-    count += temp->size - sizeof(MetaData);
-    temp = temp->next;
+    count += temp->get_size() - sizeof(MetaData);
+    temp = temp->get_next();
   }
   return count;
 }
@@ -289,10 +327,10 @@ size_t BlockList::getNumberOfFreeBlocks() const {
   MetaData *temp = block_list;
   size_t count = 0;
   while (temp != nullptr) {
-    if (temp->is_free) {
+    if (temp->get_is_free()) {
       count++;
     }
-    temp = temp->next;
+    temp = temp->get_next();
   }
   return count;
 }
@@ -301,10 +339,10 @@ size_t BlockList::getNumberOfFreeBytes() const {
   MetaData *temp = block_list;
   size_t count = 0;
   while (temp != nullptr) {
-    if (temp->is_free) {
-      count += temp->size - sizeof(MetaData);
+    if (temp->get_is_free()) {
+      count += temp->get_size() - sizeof(MetaData);
     }
-    temp = temp->next;
+    temp = temp->get_next();
   }
   return count;
 }
@@ -342,7 +380,7 @@ void sfree(void *ptr) {
   }
 
   MetaData *meta_data = BlockList::getMetaData(ptr);
-  if (meta_data->size >= mmap_size + sizeof(MetaData)) {
+  if (meta_data->get_size() >= mmap_size + sizeof(MetaData)) {
     bl_huge.freeBlock(ptr);
   } else {
     bl.freeBlock(ptr);
@@ -360,7 +398,7 @@ void *srealloc(void *oldp, size_t size) {
   }
 
   MetaData *old_block = BlockList::getMetaData(oldp);
-  size_t old_size = old_block->size;
+  size_t old_size = old_block->get_size();
 
   if (old_size >= mmap_size + sizeof(MetaData)) {
     if (old_size == size + sizeof(MetaData)) {
@@ -383,52 +421,53 @@ void *srealloc(void *oldp, size_t size) {
   MetaData *wilderness = bl.getWildernessBlock();
 
   // b
-  if (left && right && left->is_free &&
-      left->size + old_block->size >= size + sizeof(MetaData)) {
+  if (left && right && left->get_is_free() &&
+      left->get_size() + old_block->get_size() >= size + sizeof(MetaData)) {
     bl.mergeBlocks(left, old_block);
-    left->is_free = false;
+    left->set_is_free(false);
 
     new_p = (char *)left + sizeof(MetaData);
   }
 
   // c
   else if (!right) {
-    if (left && left->is_free) {
+    if (left && left->get_is_free()) {
       bl.mergeBlocks(left, old_block);
       old_block = left;
     }
-    if (old_block->size - sizeof(MetaData) < size) {
+    if (old_block->get_size() - sizeof(MetaData) < size) {
       bl.expandWilderness(size + sizeof(MetaData));
     }
-    old_block->is_free = false;
+    old_block->set_is_free(false);
 
     new_p = (char *)left + sizeof(MetaData);
   }
 
   // d
-  else if (right && right->is_free &&
-           right->size + old_block->size >= size + sizeof(MetaData)) {
+  else if (right && right->get_is_free() &&
+           right->get_size() + old_block->get_size() >=
+               size + sizeof(MetaData)) {
     bl.mergeBlocks(old_block, right);
 
     new_p = (char *)old_block + sizeof(MetaData);
   }
 
   // e
-  else if (left && right && left->is_free && right->is_free &&
-           right->size + left->size + old_block->size >=
+  else if (left && right && left->get_is_free() && right->get_is_free() &&
+           right->get_size() + left->get_size() + old_block->get_size() >=
                size + sizeof(MetaData)) {
     bl.mergeBlocks(left, old_block);
     bl.mergeBlocks(left, right);
-    left->is_free = false;
+    left->set_is_free(false);
 
     new_p = (char *)left + sizeof(MetaData);
   }
 
   // f
-  else if (right == wilderness && right->is_free) {
-    if (left && left->is_free) {
+  else if (right == wilderness && right->get_is_free()) {
+    if (left && left->get_is_free()) {
       bl.mergeBlocks(left, old_block);
-      left->is_free = false;
+      left->set_is_free(false);
       old_block = left;
     }
 
