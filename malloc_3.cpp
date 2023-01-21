@@ -45,7 +45,7 @@ private:
 };
 
 const int max_size = 1e8;
-const int mmap_size = 128 * 1024 - sizeof(MetaData);
+const int mmap_size = 128 * 1024;
 
 class BlockList {
 private:
