@@ -1,5 +1,4 @@
 
-#include "../dbg.h"
 #include "my_stdlib.h"
 #include <catch2/catch_test_macros.hpp>
 
@@ -109,32 +108,25 @@ TEST_CASE("Max size", "[malloc3]") {
 }
 
 TEST_CASE("free", "[malloc3]") {
-  dbg("SDFGDFSGDFSG");
   verify_blocks(0, 0, 0, 0);
 
-  dbg("Before smalloc(a)");
   void *base = sbrk(0);
   char *a = (char *)smalloc(10);
   REQUIRE(a != nullptr);
-  dbg("Before smalloc(b)");
   char *b = (char *)smalloc(10);
   REQUIRE(b != nullptr);
-  dbg("Before smalloc(c)");
   char *c = (char *)smalloc(10);
   REQUIRE(c != nullptr);
 
   verify_blocks(3, 10 * 3, 0, 0);
   verify_size(base);
 
-  dbg("Before sfree(a)");
   sfree(a);
   verify_blocks(3, 10 * 3, 1, 10);
   verify_size(base);
-  dbg("Before sfree(b)");
   sfree(b);
   verify_blocks(2, 10 * 3 + _size_meta_data(), 1, 10 * 2 + _size_meta_data());
   verify_size(base);
-  dbg("Before sfree(c)");
   sfree(c);
   verify_blocks(1, 10 * 3 + _size_meta_data() * 2, 1,
                 10 * 3 + _size_meta_data() * 2);

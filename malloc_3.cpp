@@ -160,6 +160,9 @@ void BlockList::trySeperate(void *ptr, size_t size) {
   new_block->set_prev(nullptr);
 
   to_seperate->set_size(size + sizeof(MetaData));
+  to_seperate->set_is_free(false);
+  to_seperate->set_next(nullptr);
+  to_seperate->set_prev(nullptr);
 
   insertBlock(new_block);
   insertBlock(to_seperate);
@@ -200,6 +203,8 @@ void BlockList::removeBlock(MetaData *to_remove) {
 void BlockList::insertBlock(MetaData *to_insert) {
   if (block_list == nullptr) {
     block_list = to_insert;
+    to_insert->set_next(nullptr);
+    to_insert->set_prev(nullptr);
     return;
   }
 
@@ -214,6 +219,7 @@ void BlockList::insertBlock(MetaData *to_insert) {
   if (tail == nullptr) {
     prev->set_next(to_insert);
     to_insert->set_prev(prev);
+    to_insert->set_next(nullptr);
     return;
   }
 
@@ -225,7 +231,8 @@ void BlockList::insertBlock(MetaData *to_insert) {
 
   if (prev == nullptr) {
     to_insert->set_next(tail);
-    tail->set_next(to_insert);
+    to_insert->set_prev(nullptr);
+    tail->set_prev(to_insert);
     block_list = to_insert;
     return;
   }
@@ -233,6 +240,7 @@ void BlockList::insertBlock(MetaData *to_insert) {
   if (tail == nullptr) {
     prev->set_next(to_insert);
     to_insert->set_prev(prev);
+    to_insert->set_next(nullptr);
     return;
   }
 
