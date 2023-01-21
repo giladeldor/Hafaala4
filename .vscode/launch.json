@@ -10,7 +10,7 @@
 			"request": "launch",
 			"program": "${workspaceFolder}/build/tests/malloc_3_test",
 			"args": [
-				"Large allocation"
+				"srealloc case b split"
 			],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",

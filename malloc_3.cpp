@@ -166,6 +166,7 @@ void BlockList::trySeperate(void *ptr, size_t size) {
 
   insertBlock(new_block);
   insertBlock(to_seperate);
+  mergeFreeBlocks((char *)new_block + sizeof(MetaData));
 }
 
 void BlockList::mergeFreeBlocks(void *ptr) {
@@ -417,20 +418,21 @@ void *srealloc(void *oldp, size_t size) {
     return smalloc(size);
   }
 
-  // a
-  if (size <= old_size) {
-    return oldp;
-  }
-
   void *new_p;
 
   MetaData *left = bl.findLeftBlock(old_block);
   MetaData *right = bl.findRightBlock(old_block);
   MetaData *wilderness = bl.getWildernessBlock();
 
+  // a
+  if (size + sizeof(MetaData) <= old_size) {
+    new_p = oldp;
+  }
+
   // b
-  if (left && right && left->get_is_free() &&
-      left->get_size() + old_block->get_size() >= size + sizeof(MetaData)) {
+  else if (left && right && left->get_is_free() &&
+           left->get_size() + old_block->get_size() >=
+               size + sizeof(MetaData)) {
     bl.mergeBlocks(left, old_block);
     left->set_is_free(false);
 
@@ -448,7 +450,7 @@ void *srealloc(void *oldp, size_t size) {
     }
     old_block->set_is_free(false);
 
-    new_p = (char *)left + sizeof(MetaData);
+    new_p = (char *)old_block + sizeof(MetaData);
   }
 
   // d
@@ -495,6 +497,7 @@ void *srealloc(void *oldp, size_t size) {
   }
 
   memcpy(new_p, oldp, old_size);
+  bl.trySeperate(new_p, size);
   return new_p;
 }
 
