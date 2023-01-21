@@ -268,7 +268,7 @@ void *BlockList::allocateBlock(size_t size) {
     }
 
     MetaData *wilderness_block = getWildernessBlock();
-    if (wilderness_block->get_is_free()) {
+    if (wilderness_block && wilderness_block->get_is_free()) {
       expandWilderness(alloc_size);
       new_block = wilderness_block;
       removeBlock(wilderness_block);
@@ -464,7 +464,7 @@ void *srealloc(void *oldp, size_t size) {
   }
 
   // f
-  else if (right == wilderness && right->get_is_free()) {
+  else if (wilderness && right == wilderness && right->get_is_free()) {
     if (left && left->get_is_free()) {
       bl.mergeBlocks(left, old_block);
       left->set_is_free(false);
