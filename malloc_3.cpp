@@ -166,7 +166,8 @@ void BlockList::trySeperate(void *ptr, size_t size) {
 
   insertBlock(new_block);
   insertBlock(to_seperate);
-  mergeFreeBlocks((char *)new_block + sizeof(MetaData));
+  // Removed according to Piazza comment
+  // mergeFreeBlocks((char *)new_block + sizeof(MetaData));
 }
 
 void BlockList::mergeFreeBlocks(void *ptr) {

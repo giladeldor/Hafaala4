@@ -1,6 +1,8 @@
 
 #include "my_stdlib.h"
 #include <catch2/catch_test_macros.hpp>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 #include <unistd.h>
 
@@ -154,6 +156,31 @@ TEST_CASE("free", "[malloc3]") {
   verify_blocks(1, 10 * 5 + _size_meta_data() * 4, 1,
                 10 * 5 + _size_meta_data() * 4);
   verify_size(base);
+}
+
+TEST_CASE("Canary heap", "[malloc3]") {
+  int res = fork();
+  if (0 == res) {
+    verify_blocks(0, 0, 0, 0);
+    char *a = (char *)smalloc(10);
+    REQUIRE(a != nullptr);
+    char *b = (char *)smalloc(10);
+    REQUIRE(b != nullptr);
+    a += 10;
+    a[0] = 'n';
+    a[1] = 'a';
+    a[2] = 'n';
+    a[3] = 'a';
+
+    sfree(a);
+    sfree(b);
+    exit(0);
+  }
+  int status = 0;
+  waitpid(res, &status, 0);
+  REQUIRE((WIFEXITED(status)));
+  // returns only 8 lowest bits
+  REQUIRE((0xef == WEXITSTATUS(status)));
 }
 
 TEST_CASE("free 2", "[malloc3]") {
